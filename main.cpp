@@ -8,7 +8,7 @@ void listar_astronautas(const vector<astronauta>& astro_list);
 void listar_voo(const vector<voo>& voo_list);
 void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list);
 void cadastrar_astronauta(vector<astronauta>& astro_list);
-
+void lancar_voo(string status_voo, vector<voo>& voo_list);
 int main() {
     vector<astronauta> astro_list;
     vector<voo> voo_list;
@@ -20,6 +20,7 @@ int main() {
         cout << "2- Cadastrar voo" << endl;
         cout << "3- Listar astronautas" << endl;
         cout << "4- Listar voos" << endl;
+        cout << "5- lançar voos" << endl;
         cin >> op;
 
         switch (op) {
@@ -34,6 +35,9 @@ int main() {
                 break;
             case 4:
                 listar_voo(voo_list);
+                break;
+            case 5:
+                lancar_voo("PLANJEADO",voo_list);
                 break;
             default:
                 cout << "Opção inválida. Tente novamente." << endl;

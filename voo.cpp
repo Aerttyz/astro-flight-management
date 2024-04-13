@@ -1,6 +1,6 @@
 #include "voo.h"
-
-voo::voo(int id_voo, std::vector<astronauta> astro_voo_list, string status_voo="planejado") {
+using namespace std;
+voo::voo(int id_voo, std::vector<astronauta> astro_voo_list, string status_voo) {
     this->id_voo = id_voo;
     this->astro_voo_list = astro_voo_list;
     this->status_voo = status_voo;
@@ -8,6 +8,9 @@ voo::voo(int id_voo, std::vector<astronauta> astro_voo_list, string status_voo="
 
 int voo::getId() const {
     return id_voo;
+}
+void voo::setStatus(const std::string& novoStatus){
+    status_voo = novoStatus;
 }
 string voo::getStatus() const{
     return status_voo;
@@ -41,7 +44,22 @@ void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list) 
         cin >> index;
         astronautas_voo.push_back(astro_list[index]);
     }
-    voo novo_voo(id_voo, astronautas_voo);
+    voo novo_voo(id_voo, astronautas_voo, "PLANEJADO");
     voo_list.push_back(novo_voo);
 }
 
+void lancar_voo(string status_voo, vector<voo>& voo_list){
+    int id_voo;
+    cout << "ID do voo: ";
+    cin >> id_voo;
+    for(voo& v : voo_list){
+        if(v.getId()==id_voo){
+            if(v.getStatus()=="PLANEJADO"){
+                v.setStatus("LANCADO");
+            }
+            else{
+                cout << "Este voo não está planejado" << endl;
+            }
+        }
+    }
+}
