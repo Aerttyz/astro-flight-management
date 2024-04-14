@@ -17,7 +17,7 @@ public:
     string getStatus() const;
     void setStatus(const std::string& novoStatus="PLANJEADO");
     const std::vector<astronauta>& getAstronautas() const;
-    string vefStatus(int id_voo,const vector<voo>& voo_list) const;
+    string vefStatus(int id_voo,vector<voo>& voo_list);
    
 };
 

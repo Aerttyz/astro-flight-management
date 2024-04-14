@@ -10,19 +10,28 @@ astronauta::astronauta(string nome, string cpf, int idade, vector<int> voo_feito
     this->voo_feitos = voo_feitos;
 }
 
-bool astronauta::astro_in_voo(int id_voo, const vector<voo>& voo_list) const {
+bool astronauta::astro_in_voo(int id_voo,vector<voo>& voo_list){
+    cout << "entrou na def" << endl;
     for(int id : voo_feitos) {
+        cout << "entrou for1" << endl;
         if(id == id_voo) {
-            for(const voo& v : voo_list) {
-                if(v.getId()==id_voo && v.getStatus()== "LANCADO"){
-                    return true;
-                /*if(v.getId() == id_voo) {
+            cout << "entrou if1" << endl;
+            for(voo& v : voo_list) {
+                
+                cout << "entrou for2" << endl;
+                if(v.getId() == id_voo) {
+                    cout << "entrou if2" << endl;
                     string status = v.vefStatus(id_voo, voo_list); 
+                    cout << status << endl;
                     if(status == "LANCADO") {
+                        cout << "retornou true" << endl;
                         return true;
+                        break;
                     } else {
+                        cout << "retornou false" << endl;
                         return false;
-                    }*/
+                        break;
+                    }
                 }
             }
         }

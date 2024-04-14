@@ -7,12 +7,12 @@ voo::voo(int id_voo, vector<astronauta> astro_voo_list, string status_voo) {
     this->status_voo = status_voo;
 };
 
-string voo::vefStatus(int id_voo,const vector<voo>& voo_list) const{
+string voo::vefStatus(int id_voo,vector<voo>& voo_list){
     for(const voo& v : voo_list){
-        if(v.getId()==id_voo){
-            return v.getStatus();
+        if(v.getStatus() == "LANCADO"){
+            return "LANCADO";
         }
-    }
+    }return "PLANEJADO";
 }
 
 int voo::getId() const {
@@ -74,17 +74,20 @@ void lancar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list){
                 // Verifica se algum astronauta tem um voo lançado
                 bool astro_in_voo_lanc = false;
                 for(astronauta& t : astro_list){
+                    cout << "entrou for" << endl;
                     if(t.astro_in_voo(id_voo, voo_list)){
                         astro_in_voo_lanc = true;
                         cout << "entrou" << endl;
                         break;
                     }
                 }
-                if(!astro_in_voo_lanc){
-                    // Se nenhum astronauta tem um voo lançado, o voo pode ser lançado
+                if(astro_in_voo_lanc==true){
+                    cout << "astro em voo" << endl;
+                    return;
+                }else if(astro_in_voo_lanc==false){
                     v.setStatus("LANCADO");
-                    cout << "Voo lançado com sucesso." << endl;
-                }else cout << "astronauta em voo" << endl;
+                    cout << "voo lançado" << endl;
+                }
 
                 
                 
