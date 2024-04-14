@@ -1,5 +1,8 @@
 #include "astronauta.h"
+#include <iostream>
+#include "voo.h"
 using namespace std;
+
 astronauta::astronauta(string nome, string cpf, int idade, vector<int> voo_feitos) {
     this->cpf = cpf;
     this->nome = nome;
@@ -7,16 +10,26 @@ astronauta::astronauta(string nome, string cpf, int idade, vector<int> voo_feito
     this->voo_feitos = voo_feitos;
 }
 
+vector<int> astronauta::getVoo_feitos() const {
+    return voo_feitos;
+}
+
+void astronauta::add_voo_to_astro(int id_voo){
+    voo_feitos.push_back(id_voo);
+}
+
+
 void astronauta::listar_astronauta() const {
     cout << "Nome: " << nome << endl;
     cout << "CPF: " << cpf << endl;
     cout << "Idade: " << idade << endl;
-    cout << "Voos Feitos: ";
-    for (int voo : voo_feitos) {
+    cout << "Voos Participados: ";
+    for (const int& voo : voo_feitos) {
         cout << voo << " ";
     }
     cout << endl;
 }
+
 void listar_astronautas(const vector<astronauta>& astro_list) {
     cout << "Lista de Astronautas:" << endl;
     for (const astronauta& a : astro_list) {
@@ -24,7 +37,6 @@ void listar_astronautas(const vector<astronauta>& astro_list) {
         cout << endl;
     }
 }
-
 
 void cadastrar_astronauta(vector<astronauta>& astro_list) {
     int idade;
