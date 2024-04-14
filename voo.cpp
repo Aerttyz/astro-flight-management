@@ -32,7 +32,7 @@ void listar_voo(const vector<voo>& voo_list){
     }
 }
 
-void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list) {
+void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list) {
     int qntd;
     int id_voo;
     cout << "ID do voo: ";
@@ -49,8 +49,8 @@ void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list) 
     }
     voo novo_voo(id_voo, astronautas_voo, "PLANEJADO");
     voo_list.push_back(novo_voo);
+    
 }
-
 void lancar_voo(string status_voo, vector<voo>& voo_list){
     int id_voo;
     cout << "ID do voo: ";

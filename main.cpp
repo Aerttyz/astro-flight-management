@@ -6,7 +6,7 @@ using namespace std;
 
 void listar_astronautas(const vector<astronauta>& astro_list);
 void listar_voo(const vector<voo>& voo_list);
-void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list);
+void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
 void cadastrar_astronauta(vector<astronauta>& astro_list);
 void lancar_voo(string status_voo, vector<voo>& voo_list);
 int main() {
