@@ -1,4 +1,5 @@
 #include "voo.h"
+#include "astronauta.h"
 using namespace std;
 voo::voo(int id_voo, std::vector<astronauta> astro_voo_list, string status_voo) {
     this->id_voo = id_voo;
@@ -32,7 +33,8 @@ void listar_voo(const vector<voo>& voo_list){
 }
 
 void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list) {
-    int id_voo, qntd;
+    int qntd;
+    int id_voo;
     cout << "ID do voo: ";
     cin >> id_voo;
     cout << "Quantos astronautas vão no voo: ";
@@ -43,6 +45,7 @@ void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list) 
         cout << "Índice do astronauta (de 0 a " << astro_list.size() - 1 << "): ";
         cin >> index;
         astronautas_voo.push_back(astro_list[index]);
+        astro_list[index].add_voo_to_astro(id_voo);
     }
     voo novo_voo(id_voo, astronautas_voo, "PLANEJADO");
     voo_list.push_back(novo_voo);

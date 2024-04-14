@@ -15,6 +15,8 @@ private:
 public:
     astronauta(string nome, string cpf, int idade, vector<int> voo_feitos);
     void listar_astronauta() const;
+    vector<int> getVoo_feitos() const;
+    void add_voo_to_astro(int id_voo);
 };
 
 void listar_astronautas(const vector<astronauta>& astro_list);
