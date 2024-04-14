@@ -5,10 +5,10 @@
 using namespace std;
 
 void listar_astronautas(const vector<astronauta>& astro_list);
-void listar_voo(const vector<voo>& voo_list);
+void listar_voo(const vector<voo>& voo_list, const vector<astronauta>& astro_list);
 void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
 void cadastrar_astronauta(vector<astronauta>& astro_list);
-void lancar_voo(string status_voo, vector<voo>& voo_list);
+void lancar_voo(string status_voo, vector<voo>& voo_list, vector<astronauta>& astro_list);
 int main() {
     vector<astronauta> astro_list;
     vector<voo> voo_list;
@@ -34,10 +34,10 @@ int main() {
                 listar_astronautas(astro_list);
                 break;
             case 4:
-                listar_voo(voo_list);
+                listar_voo(voo_list,astro_list);
                 break;
             case 5:
-                lancar_voo("PLANJEADO",voo_list);
+                lancar_voo("PLANJEADO",voo_list, astro_list);
                 break;
             default:
                 cout << "Opção inválida. Tente novamente." << endl;

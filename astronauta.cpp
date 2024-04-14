@@ -23,7 +23,7 @@ void astronauta::listar_astronauta() const {
     cout << "Nome: " << nome << endl;
     cout << "CPF: " << cpf << endl;
     cout << "Idade: " << idade << endl;
-    cout << "Voos Feitos: ";
+    cout << "Voos Participados: ";
     for (const int& voo : voo_feitos) {
         cout << voo << " ";
     }
