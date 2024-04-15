@@ -15,6 +15,14 @@ string voo::vefStatus(int id_voo,vector<voo>& voo_list){
     }return "PLANEJADO";
 }
 
+void voo::finalizar_voo(){
+    status_voo = "FINALIZADO(com sucesso)";
+}
+
+void voo::destro_voo(){
+    status_voo = "FINALIZADO(explodiu)";
+}
+
 int voo::getId() const {
     return id_voo;
 }
@@ -76,6 +84,7 @@ void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list){
                 }else if(v.getStatus()=="LANCADO"){
                     for(astronauta& t : astro_list){
                         t.kill_astro();
+                        v.destro_voo();
                     }
                 }
             }

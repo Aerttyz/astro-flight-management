@@ -18,6 +18,8 @@ public:
     void setStatus(const std::string& novoStatus="PLANJEADO");
     const std::vector<astronauta>& getAstronautas() const;
     string vefStatus(int id_voo,vector<voo>& voo_list);
+    void finalizar_voo();
+    void destro_voo();
    
 };
 
