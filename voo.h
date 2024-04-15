@@ -27,6 +27,7 @@ void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list);
 
 void lancar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list);
 
+void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
 
 #endif
 

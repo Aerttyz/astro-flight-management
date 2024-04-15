@@ -3,11 +3,20 @@
 #include "voo.h"
 using namespace std;
 
-astronauta::astronauta(string nome, string cpf, int idade, vector<int> voo_feitos) {
+astronauta::astronauta(string nome, string cpf, int idade, vector<int> voo_feitos, string status) {
     this->cpf = cpf;
     this->nome = nome;
     this->idade = idade;
     this->voo_feitos = voo_feitos;
+    this->status = status;
+}
+
+void astronauta::kill_astro(){
+    status = "MORTO";
+}
+
+string astronauta::getStatusAstro(){
+    return status;
 }
 
 bool astronauta::astro_in_voo(int id_voo,vector<voo>& voo_list){
@@ -51,6 +60,7 @@ void astronauta::listar_astronauta() const {
     cout << "Nome: " << nome << endl;
     cout << "CPF: " << cpf << endl;
     cout << "Idade: " << idade << endl;
+    cout << "Status: " << status << endl;
     cout << "Voos Participados: " << endl;
     for (const int& voo : voo_feitos) {
         cout << voo << " " << endl;

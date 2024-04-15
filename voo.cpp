@@ -60,6 +60,29 @@ void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list) {
     
 }
 
+
+
+void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list){
+        int id_voo;
+        cout << "ID do voo: ";
+        cin >> id_voo;
+        //bool voo_encontrado = false;
+        for(voo& v : voo_list){
+            if(id_voo == v.getId()){
+                //bool voo_encontrado = true;
+
+                if(v.getStatus() == "PLANEJADO"){
+                    cout << "Um voo não lançado não pode ser explodido!" << endl;
+                }else if(v.getStatus()=="LANCADO"){
+                    for(astronauta& t : astro_list){
+                        t.kill_astro();
+                    }
+                }
+            }
+        }
+    }
+
+
 void lancar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list){
     int id_voo;
     cout << "ID do voo: ";
