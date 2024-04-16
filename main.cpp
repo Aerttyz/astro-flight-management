@@ -10,7 +10,7 @@ void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
 void cadastrar_astronauta(vector<astronauta>& astro_list);
 void lancar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
 void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
-
+void finalizar_voo_suc(vector<voo>& voo_list);
 
 int main() {
     vector<astronauta> astro_list;
@@ -26,6 +26,7 @@ int main() {
         cout << "4- Listar voos" << endl;
         cout << "5- lançar voos" << endl;
         cout << "6- Explodir voo" << endl;
+        cout << "7- FInalizar voo" << endl;
         cin >> op;
 
         switch (op) {
@@ -47,6 +48,8 @@ int main() {
             case 6:
                 explodir_voo(voo_list, astro_list);
                 break;
+            case 7:
+                finalizar_voo_suc(voo_list);
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
                 break;

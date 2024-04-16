@@ -16,7 +16,7 @@ public:
     int getId() const;
     string getStatus() const;
     void setStatus(const std::string& novoStatus="PLANJEADO");
-    const std::vector<astronauta>& getAstronautas() const;
+    const std::vector<astronauta>& getAstronautas();
     string vefStatus(int id_voo,vector<voo>& voo_list);
     void finalizar_voo();
     void destro_voo();
@@ -30,6 +30,8 @@ void cadastrar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list);
 void lancar_voo(vector<voo>& voo_list, const vector<astronauta>& astro_list);
 
 void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
+
+void finalizar_voo_suc(vector<voo>& voo_list);
 
 #endif
 

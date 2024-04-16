@@ -1,5 +1,6 @@
 #include "voo.h"
 #include "astronauta.h"
+#include <algorithm>
 using namespace std;
 voo::voo(int id_voo, vector<astronauta> astro_voo_list, string status_voo) {
     this->id_voo = id_voo;
@@ -32,7 +33,19 @@ void voo::setStatus(const string& novoStatus){
 string voo::getStatus() const{
     return status_voo;
 }
-const std::vector<astronauta>& voo::getAstronautas() const {
+/*
+void voo::getIndice(string cpf, vector<astronauta>& astro_list){
+    
+    for(size_t i=0; i<getAstronautas().size();i++){
+        if(astro_list[i].getCpf()==cpf){
+            return i;
+            cout << "retornou" << i << endl;
+        }
+    }
+}
+*/
+
+const vector<astronauta>& voo::getAstronautas() {
     return astro_voo_list;
 }
 void listar_voo(const vector<voo>& voo_list, const vector<astronauta>& astro_list){
@@ -47,28 +60,69 @@ void listar_voo(const vector<voo>& voo_list, const vector<astronauta>& astro_lis
         cout << endl;
     }
 }
+/*
+void remover_astro(vector<voo>& voo_list, vector<astronauta>& astro_list) {
+    int id_voo;
+    cout << "ID do voo: ";
+    cin >> id_voo;
+    
+    for(auto& v : voo_list) {
+        if(id_voo == v.getId()) {
+            string cpf;
+            cout << "Informe o cpf do astronauta: ";
+            cin >> cpf;
+            for(astronauta& t : astro_list){
+                if(cpf==t.getCpf()){
+                    int astro;
+                    astro = v.getAstronautas();
+                    v.getIndice(cpf, astro_list);
 
+                }
+            }
+    }
+    cout << "Voo não encontrado." << endl;
+}
+}
+*/
 void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list) {
-    int qntd;
     int id_voo;
     cout << "ID do voo: ";
     cin >> id_voo;
     cout << "Quantos astronautas vão no voo: ";
+    int qntd;
     cin >> qntd;
     vector<astronauta> astronautas_voo;
     for (int i = 0; i < qntd; i++) {
-        int index;
-        cout << "Índice do astronauta (de 0 a " << astro_list.size() - 1 << "): ";
-        cin >> index;
-        astronautas_voo.push_back(astro_list[index]);
-        astro_list[index].add_voo_to_astro(id_voo);
+        string cpf;
+        cout << "CPF do astronauta: ";
+        cin >> cpf;
+        for (astronauta& astro : astro_list) { // Corrigido aqui
+            if (cpf == astro.getCpf()) {
+                astronautas_voo.push_back(astro);
+                astro.add_voo_to_astro(id_voo);
+                break; // Saia do loop assim que o astronauta for encontrado
+            }
+        }
     }
     voo novo_voo(id_voo, astronautas_voo, "PLANEJADO");
     voo_list.push_back(novo_voo);
-    
 }
 
-
+void finalizar_voo_suc(vector<voo>& voo_list){
+    int id_voo;
+    cout << "ID do voo: ";
+    cin >> id_voo;
+    for(voo& t : voo_list){
+        if(id_voo==t.getId()){
+            if(t.getStatus()=="PLANEJADO"){
+                cout << "Um voo não lançado não pode ser finalizado";
+            }else if(t.getStatus()=="LANCADO"){
+                t.finalizar_voo();
+            }
+        }
+    }
+    
+}
 
 void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list){
         int id_voo;
@@ -119,10 +173,7 @@ void lancar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list){
                 }else if(astro_in_voo_lanc==false){
                     v.setStatus("LANCADO");
                     cout << "voo lançado" << endl;
-                }
-
-                
-                
+                } 
             } else {
                 cout << "Este voo não está planejado." << endl;
             }

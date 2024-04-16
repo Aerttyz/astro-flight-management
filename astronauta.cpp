@@ -15,6 +15,11 @@ void astronauta::kill_astro(){
     status = "MORTO";
 }
 
+string astronauta::getCpf() const{
+    return cpf;
+}
+
+
 string astronauta::getStatusAstro(){
     return status;
 }

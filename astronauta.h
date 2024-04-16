@@ -23,6 +23,7 @@ public:
     bool astro_in_voo(int id_voo, vector<voo>& voo_list);
     void kill_astro();
     string getStatusAstro();
+    string getCpf() const;
 };
 
 void listar_astronautas(const vector<astronauta>& astro_list);
