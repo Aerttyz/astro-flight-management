@@ -70,8 +70,11 @@ void astronauta::listar_astronauta() const {
 
 void listar_astronautas(const vector<astronauta>& astro_list) {
     cout << "Lista de Astronautas:" << endl;
+    int i=0;
     for (const astronauta& a : astro_list) {
+        cout << "ID: " << i << endl;
         a.listar_astronauta();
+        i++;
         cout << endl;
     }
 }
