@@ -1,20 +1,22 @@
 #include <iostream>
-#include <vector>
+#include <list>
 #include "astronauta.h"
 #include "voo.h"
 using namespace std;
 
-void listar_astronautas(const vector<astronauta>& astro_list);
-void listar_voo(const vector<voo>& voo_list, const vector<astronauta>& astro_list);
-void cadastrar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
-void cadastrar_astronauta(vector<astronauta>& astro_list);
-void lancar_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
-void explodir_voo(vector<voo>& voo_list, vector<astronauta>& astro_list);
-void finalizar_voo_suc(vector<voo>& voo_list);
+void listar_astronautas(const list<astronauta>& astro_list);
+void listar_voo(const list<voo>& voo_list, const list<astronauta>& astro_list);
+void cadastrar_voo(list<voo>& voo_list, list<astronauta>& astro_list);
+void cadastrar_astronauta(list<astronauta>& astro_list);
+void lancar_voo(list<voo>& voo_list, list<astronauta>& astro_list);
+void explodir_voo(list<voo>& voo_list, list<astronauta>& astro_list);
+void finalizar_voo_suc(list<voo>& voo_list);
+void remover_astro(list<voo>& voo_list, list<astronauta>& astro_list);
+void adicionar_astro_voo(list<voo>& voo_list, list<astronauta>& astro_list);
 
 int main() {
-    vector<astronauta> astro_list;
-    vector<voo> voo_list;
+    list<astronauta> astro_list;
+    list<voo> voo_list;
 
     cout << "MENU" << endl;
     int op=-1;
@@ -27,6 +29,8 @@ int main() {
         cout << "5- lançar voos" << endl;
         cout << "6- Explodir voo" << endl;
         cout << "7- FInalizar voo" << endl;
+        cout << "8- Remover astronauta de voo" << endl;
+        cout << "9- Adicionar astronauta em voo" << endl;
         cin >> op;
 
         switch (op) {
@@ -50,6 +54,13 @@ int main() {
                 break;
             case 7:
                 finalizar_voo_suc(voo_list);
+                break;
+            case 8:
+                remover_astro(voo_list,astro_list);
+                break;
+            case 9:
+                adicionar_astro_voo(voo_list, astro_list);
+                break;
             default:
                 cout << "Opção inválida. Tente novamente." << endl;
                 break;

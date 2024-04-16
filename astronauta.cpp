@@ -3,7 +3,7 @@
 #include "voo.h"
 using namespace std;
 
-astronauta::astronauta(string nome, string cpf, int idade, vector<int> voo_feitos, string status) {
+astronauta::astronauta(string nome, string cpf, int idade, list<int> voo_feitos, string status) {
     this->cpf = cpf;
     this->nome = nome;
     this->idade = idade;
@@ -24,7 +24,7 @@ string astronauta::getStatusAstro(){
     return status;
 }
 
-bool astronauta::astro_in_voo(int id_voo,vector<voo>& voo_list){
+bool astronauta::astro_in_voo(int id_voo,list<voo>& voo_list){
     cout << "entrou na def" << endl;
     for(int id : voo_feitos) {
         cout << "entrou for1" << endl;
@@ -52,7 +52,7 @@ bool astronauta::astro_in_voo(int id_voo,vector<voo>& voo_list){
     }
     return false;
 }
-vector<int> astronauta::getVoo_feitos() const {
+list<int> astronauta::getVoo_feitos() const {
     return voo_feitos;
 }
 
@@ -73,7 +73,7 @@ void astronauta::listar_astronauta() const {
     cout << "-----------------" << endl;
 }
 
-void listar_astronautas(const vector<astronauta>& astro_list) {
+void listar_astronautas(const list<astronauta>& astro_list) {
     cout << "Lista de Astronautas:" << endl;
     int i=0;
     for (const astronauta& a : astro_list) {
@@ -84,7 +84,7 @@ void listar_astronautas(const vector<astronauta>& astro_list) {
     }
 }
 
-void cadastrar_astronauta(vector<astronauta>& astro_list) {
+void cadastrar_astronauta(list<astronauta>& astro_list) {
     int idade;
     string nome, cpf;
 
@@ -99,7 +99,7 @@ void cadastrar_astronauta(vector<astronauta>& astro_list) {
     cin >> idade;
     cin.ignore(); // Limpa o buffer do teclado
 
-    vector<int> voo_feitos;
+    list<int> voo_feitos;
     astronauta Astronauta(nome, cpf, idade, voo_feitos);
     astro_list.push_back(Astronauta);
 }
