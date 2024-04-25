@@ -13,6 +13,7 @@ void explodir_voo(list<voo>& voo_list, list<astronauta>& astro_list);
 void finalizar_voo_suc(list<voo>& voo_list);
 void remover_astro(list<voo>& voo_list, list<astronauta>& astro_list);
 void adicionar_astro_voo(list<voo>& voo_list, list<astronauta>& astro_list);
+void listar_mortos(list<astronauta>& astro_list);
 
 int main() {
     list<astronauta> astro_list;
@@ -31,6 +32,7 @@ int main() {
         cout << "7- FInalizar voo" << endl;
         cout << "8- Remover astronauta de voo" << endl;
         cout << "9- Adicionar astronauta em voo" << endl;
+        cout << "10- Listar mortos" << endl;
         cin >> op;
 
         switch (op) {
@@ -60,6 +62,9 @@ int main() {
                 break;
             case 9:
                 adicionar_astro_voo(voo_list, astro_list);
+                break;
+            case 10:
+                listar_mortos(astro_list);
                 break;
             default:
                 cout << "Opção inválida. Tente novamente." << endl;

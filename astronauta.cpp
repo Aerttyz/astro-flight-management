@@ -15,12 +15,16 @@ void astronauta::kill_astro(){
     status = "MORTO";
 }
 
+string astronauta::getNome() const{
+    return nome;
+}
+
 string astronauta::getCpf() const{
     return cpf;
 }
 
 
-string astronauta::getStatusAstro(){
+string astronauta::getStatusAstro() const{
     return status;
 }
 
@@ -52,22 +56,13 @@ bool astronauta::astro_in_voo(int id_voo,list<voo>& voo_list){
     }
     return false;
 }
-list<int> astronauta::getVoo_feitos() {
+list<int> astronauta::getVoo_feitos() const {
     return voo_feitos;
 }
 
 void astronauta::add_voo_to_astro(int id_voo){
     voo_feitos.push_back(id_voo);
 }
-
-/*int getIndexVoo_feitos(list<astronauta>& astro_list, int id_voo){
-    int index=0;
-    for(astronauta& t : astro_list){
-        if(id_voo==t.getVoo_feitos()){
-            return index;
-        }index++;
-    }return -1;
-}*/
 
 void astronauta::listar_astronauta_voo() const{
     cout << "Nome: " << nome << endl;
@@ -84,6 +79,26 @@ void astronauta::listar_astronauta() const {
         cout << voo << " " << endl;
     }
     cout << "-----------------" << endl;
+}
+
+void listar_mortos(list<astronauta>& astro_list) {
+    cout << "Lista de Astronautas Mortos:" << endl;
+    
+    // Itera pela lista de astronautas
+    for (const astronauta& a : astro_list) {
+        // Verifica se o status do astronauta é "MORTO"
+        if (a.getStatusAstro() == "MORTO") {
+            // Exibe informações do astronauta morto
+            cout << "Nome: " << a.getNome() << ", CPF: " << a.getCpf() << endl;
+            
+            // Exibe os voos feitos pelo astronauta morto
+            cout << "Voos feitos: ";
+            for (const int& voo : a.getVoo_feitos()) {
+                cout << voo << "|";
+            }
+            cout << endl;
+        }
+    }
 }
 
 void listar_astronautas(const list<astronauta>& astro_list) {

@@ -76,10 +76,9 @@ void remover_astro(list<voo>& voo_list, list<astronauta>& astro_list) {
                 astronautas_voo.erase(it);
     
                 int index = getIndex(astro_list, cpf_astronauta);
-                cout << "INDEX: "<<index << endl;
+                cout << "INDEX: "<< index << endl;
                 auto it_ast = astro_list.begin();
                 advance(it_ast, index);
-                //it_ast->getVoo_feitos().remove(id_voo);
                 it_ast->voo_feitos.remove(id_voo);
 
                 cout << "Astronauta removido com sucesso do voo." << endl;
