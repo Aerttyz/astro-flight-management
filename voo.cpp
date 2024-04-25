@@ -46,7 +46,7 @@ void voo::getIndice(string cpf, list<astronauta>& astro_list){
 }
 */
 
-const list<astronauta>& voo::getAstronautas() {
+const list<astronauta>& voo::getAstronautas() const {
     return astro_voo_list;
 }
 
@@ -55,8 +55,10 @@ void listar_voo(const list<voo>& voo_list, const list<astronauta>& astro_list){
     for (const voo& v : voo_list) {
         cout << "ID do Voo: " << v.getId() << endl;
         cout << "Astronautas no Voo:" << endl;
-        for (const astronauta& a : astro_list) {
-            a.listar_astronauta();
+        const list<astronauta> astronautas = v.getAstronautas();
+        
+        for (const astronauta& a : astronautas) {
+           a.listar_astronauta();
         }
         cout << "Status Voo: " << v.getStatus() <<endl;
         cout << endl;
@@ -118,22 +120,7 @@ void cadastrar_voo(list<voo>& voo_list, list<astronauta>& astro_list) {
     int id_voo;
     cout << "ID do voo: ";
     cin >> id_voo;
-    cout << "Quantos astronautas vão no voo: ";
-    int qntd;
-    cin >> qntd;
     list<astronauta> astronautas_voo;
-    for (int i = 0; i < qntd; i++) {
-        string cpf;
-        cout << "CPF do astronauta: ";
-        cin >> cpf;
-        for (astronauta& astro : astro_list) { // Corrigido aqui
-            if (cpf == astro.getCpf()) {
-                astronautas_voo.push_back(astro);
-                astro.add_voo_to_astro(id_voo);
-                break; // Saia do loop assim que o astronauta for encontrado
-            }
-        }
-    }
     voo novo_voo(id_voo, astronautas_voo, "PLANEJADO");
     voo_list.push_back(novo_voo);
 }
@@ -150,6 +137,7 @@ void adicionar_astro_voo(list<voo>& voo_list, list<astronauta>& astro_list){
             for(astronauta& astro :astro_list){
                 if(cpf==astro.getCpf()){
                     astronautas_voo.push_back(astro);
+                    astro.add_voo_to_astro(id_voo);
                 }
             }
         }

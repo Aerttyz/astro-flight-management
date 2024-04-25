@@ -16,7 +16,7 @@ public:
     int getId() const;
     string getStatus() const;
     void setStatus(const std::string& novoStatus="PLANJEADO");
-    const std::list<astronauta>& getAstronautas();
+    const std::list<astronauta>& getAstronautas() const;
     string vefStatus(int id_voo,list<voo>& voo_list);
     void finalizar_voo();
     void destro_voo();
