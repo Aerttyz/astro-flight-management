@@ -45,8 +45,8 @@ void listar_voo( list<voo>& voo_list, list<astronauta>& astro_list){
         cout << "Astronautas no Voo:" << endl;
         list<astronauta> astronautas = v.getAstronautas();
         
-        for (astronauta& a : astronautas) {
-           a.listar_astronauta();
+        for (const astronauta& a : astronautas) {
+           a.listar_astronauta_voo();
         }
         cout << "Status Voo: " << v.getStatus() <<endl;
         cout << endl;
@@ -68,32 +68,24 @@ void remover_astro(list<voo>& voo_list, list<astronauta>& astro_list) {
             cin >> cpf_astronauta;
 
             // Armazena a lista de astronautas temporariamente
-            auto astronautas_voo = v.getAstronautas();
-
-            // Procura o astronauta na lista do voo
-            auto it = astronautas_voo.begin();
-            while (it != astronautas_voo.end()) {
-                if (it->getCpf() == cpf_astronauta) {
-                    it = astronautas_voo.erase(it); // Remove o astronauta da lista do voo
-                    break;
-                } else {
-                    ++it;
-                }
-            }
-
-            if (it == astronautas_voo.end()) {
-                cout << "Astronauta não encontrado no voo." << endl;
-            } else {
-                // Atualiza a lista de astronautas do voo
-                v = voo(v.getId(), astronautas_voo, v.getStatus());
-                // Remover o voo da lista de voos feitos pelo astronauta removido
+            list<astronauta>& astronautas_voo = v.getAstronautas();
+            auto it = find_if(astronautas_voo.begin(), astronautas_voo.end(), [&](const astronauta& a) {
+                return a.getCpf() == cpf_astronauta;
+            });
+            if(it!=astronautas_voo.end()){
+                astronautas_voo.erase(it);
+    
                 int index = getIndex(astro_list, cpf_astronauta);
+                cout << "INDEX: "<<index << endl;
                 auto it_ast = astro_list.begin();
                 advance(it_ast, index);
-                it_ast->getVoo_feitos().remove(id_voo);
-                cout << "Astronauta removido com sucesso do voo." << endl;
-            }
+                //it_ast->getVoo_feitos().remove(id_voo);
+                it_ast->voo_feitos.remove(id_voo);
 
+                cout << "Astronauta removido com sucesso do voo." << endl;
+            }else{
+                cout << "Astronauta não encontrado no voo." << endl;
+            }
             break;
         }
     }

@@ -52,7 +52,7 @@ bool astronauta::astro_in_voo(int id_voo,list<voo>& voo_list){
     }
     return false;
 }
-list<int> astronauta::getVoo_feitos() const {
+list<int> astronauta::getVoo_feitos() {
     return voo_feitos;
 }
 
@@ -60,7 +60,20 @@ void astronauta::add_voo_to_astro(int id_voo){
     voo_feitos.push_back(id_voo);
 }
 
+/*int getIndexVoo_feitos(list<astronauta>& astro_list, int id_voo){
+    int index=0;
+    for(astronauta& t : astro_list){
+        if(id_voo==t.getVoo_feitos()){
+            return index;
+        }index++;
+    }return -1;
+}*/
 
+void astronauta::listar_astronauta_voo() const{
+    cout << "Nome: " << nome << endl;
+    cout << "CPF: " << cpf << endl;
+    cout << "Idade: " << idade << endl;
+}
 void astronauta::listar_astronauta() const {
     cout << "Nome: " << nome << endl;
     cout << "CPF: " << cpf << endl;
@@ -75,11 +88,8 @@ void astronauta::listar_astronauta() const {
 
 void listar_astronautas(const list<astronauta>& astro_list) {
     cout << "Lista de Astronautas:" << endl;
-    int i=0;
     for (const astronauta& a : astro_list) {
-        cout << "ID: " << i << endl;
         a.listar_astronauta();
-        i++;
         cout << endl;
     }
 }
