@@ -5,7 +5,7 @@
 using namespace std;
 
 void listar_astronautas(const list<astronauta>& astro_list);
-void listar_voo(const list<voo>& voo_list, const list<astronauta>& astro_list);
+void listar_voo( list<voo>& voo_list,  list<astronauta>& astro_list);
 void cadastrar_voo(list<voo>& voo_list, list<astronauta>& astro_list);
 void cadastrar_astronauta(list<astronauta>& astro_list);
 void lancar_voo(list<voo>& voo_list, list<astronauta>& astro_list);
