@@ -69,35 +69,86 @@ void astronauta::listar_astronauta_voo() const{
     cout << "CPF: " << cpf << endl;
     cout << "Idade: " << idade << endl;
 }
+
 void astronauta::listar_astronauta() const {
-    cout << "Nome: " << nome << endl;
-    cout << "CPF: " << cpf << endl;
-    cout << "Idade: " << idade << endl;
-    cout << "Status: " << status << endl;
-    cout << "Voos Participados: " << endl;
-    for (const int& voo : voo_feitos) {
-        cout << voo << " " << endl;
+    
+    
+    cout << "-------------------------------------" << endl;
+    cout <<  "Nome:" << nome << endl;
+    cout <<  "CPF:" << cpf << endl;
+    cout <<  "Idade:" << idade << endl;
+    cout <<  "Status:" << status << endl;
+
+    cout <<  "Voos Participados:";
+    if (voo_feitos.empty()) {
+        cout << "Nenhum voo registrado" << endl;
+    } else {
+        cout << endl;
+        for (const int& voo : voo_feitos) {
+            cout << " - Voo " << voo << endl;
+        }
     }
-    cout << "-----------------" << endl;
+
+    cout << "-------------------------------------" << endl;
 }
 
 void listar_mortos(list<astronauta>& astro_list) {
-    cout << "Lista de Astronautas Mortos:" << endl;
+    int op = 1;
+while(op){
+    string caveira[] = {
+        "███████████████████████████",
+        "███████▀▀▀░░░░░░░▀▀▀███████",
+        "████▀░░░░░░░░░░░░░░░░░▀████",
+        "███│░░░░░░░░░░░░░░░░░░░│███",
+        "██▌│░░░░░░░░░░░░░░░░░░░│▐██",
+        "██░└┐░░░░░░░░░░░░░░░░░┌┘░██",
+        "██░░└┐░░░░░░░░░░░░░░░┌┘░░██",
+        "██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██",
+        "██▌░│██████▌░░░▐██████│░▐██",
+        "███░│▐███▀▀░░▄░░▀▀███▌│░███",
+        "██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██",
+        "██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██",
+        "████▄─┘██▌░░░░░░░▐██└─▄████",
+        "█████░░▐█─┬┬┬┬┬┬┬─█▌░░█████",
+        "████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████",
+        "█████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████",
+        "███████▄░░░░░░░░░░░▄███████",
+        "██████████▄▄▄▄▄▄▄██████████",
+        "███████████████████████████"
+    };
+
+
+    for (const string& linha : caveira) {
+        cout <<  linha  << "\n";
+    }
+    cout << endl;
     
+    cout << "Lista de Astronautas Mortos:\n";
+    cout << "----------------------------\n";
+
+    // Verifica se a lista está vazia
+    if (astro_list.empty()) {
+        cout << "Nenhum astronauta morto encontrado.\n";
+        cout <<  "----------------------------\n";
+        return;
+    }
+
     // Itera pela lista de astronautas
     for (const astronauta& a : astro_list) {
         // Verifica se o status do astronauta é "MORTO"
         if (a.getStatusAstro() == "MORTO") {
             // Exibe informações do astronauta morto
-            cout << "Nome: " << a.getNome() << ", CPF: " << a.getCpf() << endl;
-            
-            // Exibe os voos feitos pelo astronauta morto
+            cout << "Nome: " << a.getNome() << " | CPF: " << a.getCpf() << "\n";
             cout << "Voos feitos: ";
             for (const int& voo : a.getVoo_feitos()) {
-                cout << voo << "|";
+                cout << voo << " | ";
             }
-            cout << endl;
+            cout << "\n";
         }
+    }
+    cout << "----------------------------\n";
+    cout << "Para sair da exibição digite 0:";
+    cin >> op;
     }
 }
 
