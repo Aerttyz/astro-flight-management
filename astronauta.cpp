@@ -29,24 +29,21 @@ string astronauta::getStatusAstro() const{
 }
 
 bool astronauta::astro_in_voo(int id_voo,list<voo>& voo_list){
-    cout << "entrou na def" << endl;
     for(int id : voo_feitos) {
-        cout << "entrou for1" << endl;
+        
         if(id == id_voo) {
-            cout << "entrou if1" << endl;
+            
             for(voo& v : voo_list) {
                 
-                cout << "entrou for2" << endl;
+                
                 if(v.getId() == id_voo) {
-                    cout << "entrou if2" << endl;
+                    
                     string status = v.vefStatus(id_voo, voo_list); 
-                    cout << status << endl;
+                    
                     if(status == "LANCADO") {
-                        cout << "retornou true" << endl;
                         return true;
                         break;
                     } else {
-                        cout << "retornou false" << endl;
                         return false;
                         break;
                     }
@@ -72,7 +69,7 @@ void astronauta::listar_astronauta_voo() const{
 
 void astronauta::listar_astronauta() const {
     
-    
+
     cout << "-------------------------------------" << endl;
     cout <<  "Nome:" << nome << endl;
     cout <<  "CPF:" << cpf << endl;
@@ -90,11 +87,12 @@ void astronauta::listar_astronauta() const {
     }
 
     cout << "-------------------------------------" << endl;
-}
+    }
+
 
 void listar_mortos(list<astronauta>& astro_list) {
     int op = 1;
-while(op){
+    while(op){
     string caveira[] = {
         "███████████████████████████",
         "███████▀▀▀░░░░░░░▀▀▀███████",
@@ -153,13 +151,21 @@ while(op){
 }
 
 void listar_astronautas(const list<astronauta>& astro_list) {
-    cout << "Lista de Astronautas:" << endl;
-    for (const astronauta& a : astro_list) {
-        a.listar_astronauta();
-        cout << endl;
-    }
-}
+        
+        if (astro_list.empty()) {
+            cout << "Nenhum astronauta cadastrado." << endl;
+            return;
+        }
 
+        cout << "Lista de Astronautas:" << endl;
+        for (const astronauta& a : astro_list) {
+            a.listar_astronauta();
+            cout << endl;
+        }
+        cout << "Pressione qualquer tecla para sair da lista:";
+        cin.ignore();
+        cin.get();
+}
 void cadastrar_astronauta(list<astronauta>& astro_list) {
     int idade;
     string nome, cpf;
@@ -171,6 +177,14 @@ void cadastrar_astronauta(list<astronauta>& astro_list) {
     cout << "CPF: ";
     getline(cin, cpf);
 
+    // Verifica se o CPF já está cadastrado
+    for (const astronauta& a : astro_list) {
+        if (a.getCpf() == cpf) {
+            cout << "CPF já cadastrado. Tente novamente com um CPF diferente." << endl;
+            return;
+        }
+    }
+
     cout << "Idade: ";
     cin >> idade;
     cin.ignore(); // Limpa o buffer do teclado
@@ -179,3 +193,4 @@ void cadastrar_astronauta(list<astronauta>& astro_list) {
     astronauta Astronauta(nome, cpf, idade, voo_feitos);
     astro_list.push_back(Astronauta);
 }
+

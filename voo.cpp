@@ -1,6 +1,7 @@
 #include "voo.h"
 #include "astronauta.h"
 #include <algorithm>
+#include <limits>
 using namespace std;
 voo::voo(int id_voo, list<astronauta> astro_voo_list, string status_voo) {
     this->id_voo = id_voo;
@@ -46,6 +47,7 @@ void listar_voo( list<voo>& voo_list, list<astronauta>& astro_list){
         list<astronauta> astronautas = v.getAstronautas();
         
         for (const astronauta& a : astronautas) {
+           printf("--------------------------------\n");
            a.listar_astronauta_voo();
         }
         cout << "Status Voo: " << v.getStatus() <<endl;
@@ -56,8 +58,12 @@ void listar_voo( list<voo>& voo_list, list<astronauta>& astro_list){
 void remover_astro(list<voo>& voo_list, list<astronauta>& astro_list) {
     int id_voo;
     cout << "ID do voo: ";
-    cin >> id_voo;
-
+    while (!(cin >> id_voo)) {
+        cout << "Valor inválido. Por favor, insira um valor inteiro: ";
+        cin.clear();
+        
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    }
     bool voo_encontrado = false;
     for (voo& v : voo_list) {
         if (id_voo == v.getId()) {
@@ -97,8 +103,30 @@ void remover_astro(list<voo>& voo_list, list<astronauta>& astro_list) {
 
 void cadastrar_voo(list<voo>& voo_list, list<astronauta>& astro_list) {
     int id_voo;
-    cout << "ID do voo: ";
-    cin >> id_voo;
+    while (true) {
+        cout << "ID do voo: ";
+        while (!(cin >> id_voo)) {
+            cout << "Valor inválido. Por favor, insira um valor inteiro: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        
+        bool id_repetido = false;
+        for (const voo& v : voo_list) {
+            if (id_voo == v.getId()) {
+                id_repetido = true;
+                break;
+            }
+        }
+        if (id_repetido) {
+            cout << "ID do voo já existe. Por favor, insira um ID diferente: ";
+            cin.clear(); // Limpar a flag de erro do cin
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Limpar o buffer
+        } else {
+            break;
+        }
+    }
+
     list<astronauta> astronautas_voo;
     voo novo_voo(id_voo, astronautas_voo, "PLANEJADO");
     voo_list.push_back(novo_voo);
