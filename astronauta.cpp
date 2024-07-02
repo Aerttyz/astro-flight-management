@@ -162,7 +162,7 @@ void listar_astronautas(const list<astronauta>& astro_list) {
             a.listar_astronauta();
             cout << endl;
         }
-        cout << "Pressione qualquer tecla para sair da lista:";
+        cout << "Pressione enter para sair da lista:";
         cin.ignore();
         cin.get();
 }
