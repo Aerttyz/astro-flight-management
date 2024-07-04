@@ -240,10 +240,10 @@ void lancar_voo(list<voo>& voo_list, list<astronauta>& astro_list){
                     // Verifica se algum astronauta tem um voo lançado
                     bool astro_in_voo_lanc = false;
                     for(astronauta& t : astro_list){
-                        cout << "entrou for" << endl;
+                        
                         if(t.astro_in_voo(id_voo, voo_list)){
                             astro_in_voo_lanc = true;
-                            cout << "entrou" << endl;
+                            
                             break;
                         }
                     }
